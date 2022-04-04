@@ -7,23 +7,25 @@ import 'package:taksi/slidinguppanel.dart';
 import 'package:taksi/taksi_cagirildi.dart';
 import "package:http/http.dart" as http;
 
-import 'layouts/appbar.dart';
-import 'models/travel.dart';
-import 'musteri.dart';
+import '../layouts/driver/appbar.dart';
+import '../models/travel.dart';
+import '../driver/anasayfa_driver.dart';
 
 List<Travel> travel = [];
 var isLoader = false;
 String debit = '';
+String travelId = '';
 final messageController = TextEditingController();
 
-class TaksiYolda extends StatefulWidget {
-  const TaksiYolda({Key key}) : super(key: key);
+class TaksiYoldaa extends StatefulWidget {
+  String travelObject;
+   TaksiYoldaa({this.travelObject}) : super();
 
   @override
-  _TaksiYoldaState createState() => _TaksiYoldaState();
+  _TaksiYoldaaState createState() => _TaksiYoldaaState();
 }
 
-class _TaksiYoldaState extends State<TaksiYolda> {
+class _TaksiYoldaaState extends State<TaksiYoldaa> {
 showAlertDialogSuccess(BuildContext context) {
   // Create button
   Widget okButton = FlatButton(
@@ -171,10 +173,10 @@ showAlertDialogSuccess(BuildContext context) {
     });
     final prefs = await SharedPreferences.getInstance();
     debit = prefs.getString('card');
-    //print(debit + 'debit');
+    print(widget.travelObject + "asdfasdf");
     final response = await http.get(
       Uri.parse('https://hoptaksi-api.herokuapp.com/api/travel/' +
-          prefs.getString('travelId')),
+          widget.travelObject),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -202,7 +204,7 @@ showAlertDialogSuccess(BuildContext context) {
             providerVehicle: result['data'][0]['providerVehicle'],
             providerVehicleType: result['data'][0]['providerVehicleType'],
             providerRating: result['data'][0]['providerRating']));
-        print(travel[0]);
+        //print(travel[0]);
       });
       setState(() {
         isLoader = false;

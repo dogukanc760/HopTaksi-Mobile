@@ -3,7 +3,14 @@ import 'package:taksi/layouts/appbar.dart';
 import 'package:taksi/taksiyolda.dart';
 
 class TaksiCagirildi extends StatefulWidget {
-  const TaksiCagirildi({Key key}) : super(key: key);
+ 
+  String taksiKonum;
+  String musteriKonum;
+
+  String baslangic;
+  String bitis;
+
+   TaksiCagirildi({this.taksiKonum='', this.musteriKonum='', this.baslangic='', this.bitis=''}) : super();
 
   @override
   _TaksiCagirildiState createState() => _TaksiCagirildiState();
@@ -86,7 +93,7 @@ class _TaksiCagirildiState extends State<TaksiCagirildi> {
                                       padding:
                                           const EdgeInsets.fromLTRB(30, 20, 0, 0),
                                       child: Text(
-                                        '11:24',
+                                        widget.baslangic,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.grey),
@@ -102,7 +109,7 @@ class _TaksiCagirildiState extends State<TaksiCagirildi> {
                                       padding:
                                       const EdgeInsets.fromLTRB(10, 20, 0, 0),
                                       child: Text(
-                                        'Taksinin Konumu',
+                                        widget.taksiKonum,
                                         style: TextStyle(
                                           fontSize: 15,
 
@@ -113,7 +120,7 @@ class _TaksiCagirildiState extends State<TaksiCagirildi> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0,155, 0),
+                                  padding: const EdgeInsets.fromLTRB(80, 0,155, 0),
                                   child: SizedBox(
                                     height: 100,
                                     child: VerticalDivider(
@@ -131,7 +138,7 @@ class _TaksiCagirildiState extends State<TaksiCagirildi> {
                                       padding:
                                       const EdgeInsets.fromLTRB(22, 0, 0, 0),
                                       child: Text(
-                                        '11:24',
+                                        widget.bitis,
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.grey),
@@ -147,7 +154,7 @@ class _TaksiCagirildiState extends State<TaksiCagirildi> {
                                       padding:
                                       const EdgeInsets.fromLTRB(5, 0, 0, 0),
                                       child: Text(
-                                        'Müşterinin Konumu',
+                                        widget.musteriKonum,
                                         style: TextStyle(
                                             fontSize: 15,
 
